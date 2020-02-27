@@ -19,8 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([
 
-    'middleware' => 'assign.guard:customer',
-    'prefix' => 'customer'
+    'middleware' => 'api',
+    // 'prefix' => 'auth'
 
 ], function ($router) {
 
@@ -29,18 +29,6 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-});
-
-Route::group([
-
-    'middleware' => 'assign.guard:author',
-    'prefix' => 'author'
-
-], function ($router) {
-
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::post('saveNews', 'Api\NewsController@saveNews');
 
 });

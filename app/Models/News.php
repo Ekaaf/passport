@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Author extends Model
+class News extends Model
 {
-    protected $table = 'authors';   
+    protected $table = 'news';   
 }
