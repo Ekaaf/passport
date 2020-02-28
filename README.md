@@ -1,78 +1,137 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Project Details
+This is a API implementation project developed using Lumen - a PHP microframwork.  
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Project Structure
+    .
+    |-- app                 # Holds the base code of the application. 
+    |                       # Containing Services, Repositories, 
+    |                       # Models, Controller, Events etc. 
+    |-- bootstrap           # Start up bootstraping
+    |-- config              # Configuration files and Constants
+    |-- database            # Migration, Seeder, Factories etc.
+    |-- public              # Contains index, .htaccess, asstes
+    |-- resources           # Contains frontend resources if any
+    |-- routes              # Route folder to manage application rooute
+    |-- storage             # Stores application cache and logs
+    |-- tests               # Contains TestCases 
+    |-- .env.example        # example/structure of .env file
+    |-- artisan             # It is for command line interface
+    |-- composer.json       # Handles project dependencies and libraries
+    |-- db_health_check.sh  # Shell command for mysql health check after docker up
+    |-- docker-compose.yml  # YAML file defining services, networks and volumes for docker-compose.
+    |-- dockerfile          # Used to build docker image.
+    |-- Makefile            # Makefile to run commands after docker up
+    |-- phpunit.xml         # Configuration of testcase and testing files
+    |-- readme.md           # Explains project installation and other informations
+    |-- test-report.xml     # Test case report
 
-## About Laravel
+# Tools and Technology
+    Lumen 6.0 (Microservice Framework)
+    MySQL 8.0
+    PHP 7.3
+    Docker
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## With Docker:
+You must need docker and docker-compose installed and running in you system.
+#### Step-1
+Copy/rename `.env.example` file as `.env`. No need to change anything. It contains configuration data of MySQL container service.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Step-2
+Start application using docker-compose file. Run this following command:
+```bash
+docker-compose up -d
+```
 
-## Learning Laravel
+Now you can see the wolcome message to the following link: [localhost:8000](http://localhost:8000)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Without Docker Container:
+You must need composer, apache and MySQL installed and running in you system.
+#### Step-1
+Copy/rename `.env.example` file as `.env`. Change the `DB_HOST, DB_USERNAME, DB_PASSWORD` value as per your mysql setup. MySQL default `DB_HOST` should be `localhost`, `DB_USERNAME` should be `root` and `DB_PASSWORD` should be null.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Step-2
+Create datbase `restaurants`.
 
-## Laravel Sponsors
+#### Step-3
+Run the follow commands one by one: 
+```bash
+composer install
+php artisan migrate --seed 
+php -S localhost:8000 -t public
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Now you can see the wolcome message to the following link: [localhost:8000](http://localhost:8000)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+# Test Case Execution
+Run the following command to execute test cases:
+```bash
+vendor/bin/phpunit ./tests
+```
+**For docker** you can use the following command to run test cases without entering into the container: 
+```bash
+docker exec search_api_website_1  vendor/bin/phpunit ./tests/
+```
+Here `search_api_website_1` is the webserver container name.
 
-## Contributing
+# Generating Test Report
+Run the following command to generate test report for all the test cases: 
+```bash
+vendor/bin/phpunit --log-junit test-report.xml
+```
+**For docker** you can use the following command to generate test report without entering into the container: 
+```bash
+docker exec search_api_website_1  vendor/bin/phpunit ./tests/  --log-junit test-report.xml
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Here `search_api_website_1` is the webserver container name.
 
-## Code of Conduct
+Test report will be generated in the root folder as `test-report.xml`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+# REST API 
+The REST API to the search app is described below.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Version 1:
+### Get list of all Restaurants:
+#### Request  
 
-## License
+Method:  `GET /thing/api/v1/restaurants`  
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Endpoint: [http://localhost:8000/api/v1/restaurants](http://localhost:8000/api/v1/restaurants)
+
+
+### Get list of all Restaurants by sorting:
+**Request**:  
+
+Method: `GET`  
+
+Parameter: `sort_by`
+
+Listed parameter values:  `best match, newest, rating average, popularity, average product price, delivery costs or the minimum order amount costs.`  
+
+Endpoint example: [http://localhost:8000/api/v1/restaurants?sort_by=best match](http://localhost:8000/api/v1/restaurants?sort_by=bestmatch)
+
+
+### Search list of restaurants by name:
+#### Request:  
+
+Method: `GET`  
+
+Endpoint example: [http://localhost:8000/api/v1/restaurants](http://localhost:8000/api/v1/restaurants)
+
+Parameter: `search_by`
+
+Parameter value: Restaurant `name` field value
+
+Endpoint example: [http://localhost:8000/api/v1/restaurants?sort_by=pizza](http://localhost:8000/api/v1/restaurants?search_by=pizza)
+
+## Version 5:
+#### Request  
+
+Method:  `GET /thing/api/v5/restaurants`  
+
+Endpoint: [http://localhost:8000/api/v5/restaurants](http://localhost:8000/api/v5/restaurants)
+
+Other things remain same for different versioning. 
