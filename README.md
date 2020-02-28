@@ -8,7 +8,8 @@ Clone the file from git
 #### Step-2
 There is sql file in the folder named sql. vivasoft.sql contains database with data. vivasoft_structure.sql contains only database structure. You can use any of the file according to your liking.
 #### Step-3
-Run composer update command
+Run composer update command. Go to http://localhost/vivasoft/ folder. If there is permission error, please give appropiate permission. Then run
+php artisan key:generate. <br /> php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider" <br />php artisan jwt:secret
 #### Step-4
 Copy/rename .env.example file as .env. Configre the mysql database
 #### Step-5
