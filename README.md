@@ -20,4 +20,14 @@ You can find the password for login in app/database/UsersTableSeeder.php
 # Running the Project 
 #### login url
 [http://localhost/vivasoft/api/login](http://localhost/vivasoft/api/login)
+
+#### news save url
+[http://localhost/vivasoft/api/saveNews](http://localhost/vivasoft/api/saveNews) (POST)
  
+#### get news url
+[http://localhost/vivasoft/api/getNews](http://localhost/vivasoft/api/saveNews)	(GET)
+
+# Running the Project 
+When logged in user is author, he can create news. But he cannot get the news list. (type =1)
+When logged in user is customer, he can get the news list but he can create news. (type =2)
+When logged in user is both author and customer, he can get the news list and also he can create news. (type =3)
