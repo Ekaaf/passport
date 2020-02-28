@@ -11,7 +11,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {	$faker = Faker\Factory::create();
-    	for ($i=0; $i<1 ; $i++) { 
+    	for ($i=0; $i<30 ; $i++) { 
         	DB::table('categories')->insert([
 	            'title' => "Category".$i
 	        ]);

@@ -46,8 +46,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapaaatRoutes();
-
         //
     }
 
@@ -78,14 +76,5 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
-    }
-
-
-    protected function mapaaatRoutes()
-    {
-        // Route::prefix('customer')
-        //      // ->middleware('aaa')
-        //      ->namespace($this->namespace)
-        //      ->group(base_path('routes/view.php'));
     }
 }

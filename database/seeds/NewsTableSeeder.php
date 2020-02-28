@@ -14,7 +14,7 @@ class NewsTableSeeder extends Seeder
     	$categoryIDs = DB::table('categories')->pluck('id');
     	$authorIDs = DB::table('authors')->pluck('id');
         $faker = Faker\Factory::create();
-        for ($i=0; $i<50 ; $i++) { 
+        for ($i=0; $i<30 ; $i++) { 
         	DB::table('news')->insert([
         		'category_id' => $faker->randomElement($categoryIDs),
         		'author_id' => $faker->randomElement($authorIDs),

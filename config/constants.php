@@ -7,7 +7,13 @@
 return [
     'news' => [
         'SAVE' => 'Author Saved Successfully.',
-        'ERROR' => 'Sorry! Something went wrong. Please try again later.'
+        'ERROR' => 'Sorry! Something went wrong. Please try again later.',
+        'GET_DATA' => 'Data fetched Successfully.',
+        'limit' => 10
+    ],
+    'customer_log' => [
+        'FREE_CUSTOMER' => 'You have already reached maximum request limit for a day. If you want to make more request, please upgrade your account to premium user.',
+        'PAID_CUSTOMER' => 'You have already reached maximum request limit for a day.',
     ],
     'status' => [
         'OK' => 200,

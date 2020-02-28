@@ -9,46 +9,45 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 
 class NewsController extends Controller
-{   
+{
     private $newsService;
+
     /**
      * Create a new controller instance.
-     * Dependency injection for Author Service
-     * 
-     * @return void
+     * Dependency injection for News Service
+     *
+     * @param NewsService $newsService
      */
     public function __construct(NewsService $newsService)
     {
+        $this->middleware('auth:api', ['except' => ['login']]);
         $this->newsService = $newsService;
     }
 
     /**
      * save author
      *
+     * @param Request $request
      * @return JSON
      */
     public function saveNews(Request $request)
-    {   
+    {
         $data = (array) json_decode($request->getContent());
-        $messages = [
-            'required' => 'The :attribute field is required.',
-            'numeric' => 'The :attribute should be number.',
-        ];
-        $rules = [
-            'title' => 'required',
-            'content' => 'required',
-            'category_id' => 'numeric'
-        ];
-        $validator = Validator::make($data, $rules, $messages);
-        if ($validator->fails()) {
-            return Response::json([
-                'success' => false,
-                'message' => $validator->messages(),
-                'statusCode' => Config('constants.status.UNPROCESSABLE_ENTITY')
-            ], Config('constants.status.UNPROCESSABLE_ENTITY'));
-        }
+
         $response = $this->newsService->saveNews($data);
-        // return Response::json($response);
-        return Response::json($response, $response['statusCode']);
+        return Response::json($response, $response->statusCode);
+    }
+
+    /**
+     * get news list
+     * @param Request $request
+     * @return JSON
+     */
+    public function getNews(Request $request)
+    {
+        $data = $request->all();
+
+        $response = $this->newsService->getNews($data);
+        return Response::json($response, $response->statusCode);
     }
 }

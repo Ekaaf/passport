@@ -19,8 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([
 
-    'middleware' => 'api',
-    // 'prefix' => 'auth'
+    'middleware' => ['api']
 
 ], function ($router) {
 
@@ -28,7 +27,23 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+    
+});
 
-    Route::post('saveNews', 'Api\NewsController@saveNews');
+Route::group([
 
+    'middleware' => ['api','author']
+
+], function ($router) {
+
+   	Route::post('saveNews', 'Api\NewsController@saveNews');
+});
+
+Route::group([
+
+    'middleware' => ['api','customer']
+
+], function ($router) {
+
+   	Route::get('getNews', 'Api\NewsController@getNews');
 });

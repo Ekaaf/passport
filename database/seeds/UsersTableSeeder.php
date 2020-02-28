@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for ($i=0; $i<1 ; $i++) { 
+        for ($i=0; $i<30; $i++) { 
         	$type = rand(1,3);
         	$userID = DB::table('users')->insertGetId([
                 'email' => $faker->unique()->email,
@@ -33,7 +33,8 @@ class UsersTableSeeder extends Seeder
 	    }
     }
 
-    public function createAuthor($faker,$userID){
+    public function createAuthor($faker,$userID)
+    {
     	DB::table('authors')->insert([
             'user_id' => $userID,
             'name' => $faker->name,
@@ -41,7 +42,8 @@ class UsersTableSeeder extends Seeder
         ]);
     }
 
-    public function createCustomer($faker,$userID){
+    public function createCustomer($faker,$userID)
+    {
     	DB::table('customers')->insert([
             'user_id' => $userID,
             'name' => $faker->name,
