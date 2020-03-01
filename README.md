@@ -13,8 +13,8 @@ php artisan key:generate. <br /> php artisan vendor:publish --provider="Tymon\JW
 #### Step-4
 Copy/rename .env.example file as .env. Configre the mysql database
 #### Step-5
-If you use vivasoft_structure.sql, you can use seeder to generate sample data. Run the following commands :
-php artisan db:seed --class=UsersTableSeeder
+If you use vivasoft_structure.sql, you can use seeder to generate sample data. Run the following commands : <br>
+php artisan db:seed --class=UsersTableSeeder <br>
 php artisan db:seed --class=CategoriesTableSeeder
 You can find the password for login in app/database/UsersTableSeeder.php
 
